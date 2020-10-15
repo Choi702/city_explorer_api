@@ -16,7 +16,10 @@ const app = express();
 // Use CORS (cross origin resource sharing)
 app.use(cors());
 
-
+//Routes
+app.get('/', (request, response) =>{
+ response.send('Whats Up Man!');
+})
 
 //start our server
 app.listen(PORT, () => {
