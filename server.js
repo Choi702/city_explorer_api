@@ -21,17 +21,25 @@ app.get('/', (request, response) =>{
  response.send('Whats Up Man!');
 })
 
+
+app.get('/location', (request, response) =>{
+let city = request.query.city;
+  //getting the data from the database or api using a flat file
+  let locationData = require('./data/location.json')[0];
+  let location = new Location(locationData, city);
+  response.send(location);
+});
+
+//constructor to tailor incoming raw data
+function Location(obj, query){
+  this.latitude = obj.lat;
+  this.longitude = obj.lon;
+  this.search_query = query;
+  this.formatted_query = obj.display_name;
+}
+
+
 //start our server
 app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
-
-app.get('#location', (request, respond) =>{
-  console.log(request.query.city);
- //getting the data from the database or api using a flat file
- let locationData = require('./data/location.json')[0];
- let location =
-});
-
-function location()
-
