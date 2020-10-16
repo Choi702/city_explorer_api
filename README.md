@@ -24,37 +24,38 @@
 -->
 
 
-Number and name of feature: ________________________________
+Number and name of feature: feature 1
 
-Estimate of time needed to complete:
+Estimate of time needed to complete: 1 hour
 
-Start time: 
+Start time: 10:30am
 
-Finish time: 
+Finish time: 11:45am
 
-Actual time needed to complete: 
-
-
-Number and name of feature: ________________________________
+Actual time needed to complete: 1 hour and 15 minutes
 
 
-Estimate of time needed to complete: 
-
-Start time: 
-
-Finish time: 
-
-Actual time needed to complete: 
-Number and name of feature: ________________________________
+Number and name of feature: feature 2
 
 
-Estimate of time needed to complete: 
+Estimate of time needed to complete: 2 hours
 
-Start time: 
+Start time: 5:30 pm
 
-Finish time: 
+Finish time: 8:30 pm
 
-Actual time needed to complete: 
+Actual time needed to complete:  3 hours
+
+Number and name of feature: feature 3
+
+
+Estimate of time needed to complete: 2 hours
+
+Start time:  8:30pm
+
+Finish time: 10:25pm
+
+Actual time needed to complete:  1 hour 55 minutes
 
 Number and name of feature: ________________________________
 
