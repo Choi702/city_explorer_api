@@ -26,3 +26,9 @@ app.listen(PORT, () => {
   console.log(`Server is now listening on port ${PORT}`);
 });
 
+app.get('#location', (request, respond) =>{
+ //getting the data from the database or api using a flat file
+ let locationData = require('./data/location.json')[0];
+ console.log(locationData); 
+})
+
