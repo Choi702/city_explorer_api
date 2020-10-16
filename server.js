@@ -27,8 +27,11 @@ app.listen(PORT, () => {
 });
 
 app.get('#location', (request, respond) =>{
+  console.log(request.query.city);
  //getting the data from the database or api using a flat file
  let locationData = require('./data/location.json')[0];
- console.log(locationData); 
-})
+ let location =
+});
+
+function location()
 
