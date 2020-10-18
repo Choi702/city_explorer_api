@@ -20,7 +20,7 @@ app.use(cors());
 // });
 
 
-//Route handlers
+//Route handler
 app.get('/location', (req, res) => {
   let city = req.query.city;
   let key = process.env.LOCATIONIQ_API_KEY;
@@ -45,17 +45,25 @@ function Location(obj, query) {
     this.formatted_query = obj.display_name;
 }
 
-
 app.get('/weather', (req, res) =>{
 let city = req.query.city;
-let key = process.env.WEATHER;
-const URL = `http://api.weatherbit.io/v2.0/forecast/daily?lat={47.61}&lon={-122.33}?city={Seattle}&country={US}`
+let tok = process.env.WEATHER_API_KEY;
+const URL = `http://api.weatherbit.io/v2.0/forecast/daily?lat={47.61}&lon={-122.33}?city={Seattle}&country={US}?key=${tok}`
 superagent.get(URL)
+let newMap =[];
+  let maps = new maps.map(data[0], city);
+  res.status(200).send(maps);
+});
 
+function Weather(obj, query){
+  this.latitude = obj.lat;
+  this.longitude = obj.lon;
+  this.forecast = obj.forecast;
+  this.search_query = query;
+  this.time = obj.time;
 
+}
 
-
-})
        
    
 //start our server
