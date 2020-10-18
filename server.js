@@ -46,21 +46,32 @@ function Location(obj, query) {
 }
 
 app.get('/weather', (req, res) =>{
-let city = req.query.city;
+let city = req.query.search_query;
 let tok = process.env.WEATHER_API_KEY;
-const URL = `http://api.weatherbit.io/v2.0/forecast/daily?lat={47.61}&lon={-122.33}?city={Seattle}&country={US}?key=${tok}`
+const URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&key=${tok}`;
 superagent.get(URL)
-let newMap =[];
-  let maps = new maps.map(data[0], city);
-  res.status(200).send(maps);
+.then(data =>{
+  let newMap = data.body.data.map(function(weatherDay)
+ {   
+   let weatherApi = new Weather(weatherDay)
+   return weatherApi;
+  
+  });
+  newMap = newMap.slice(0, 8);
+  res.status(200).send(newMap);
+})
+ .catch((error) => {
+      console.log('error', error);
+      res.status(500).send('Your API call did not work!');
+    });
 });
 
-function Weather(obj, query){
-  this.latitude = obj.lat;
-  this.longitude = obj.lon;
-  this.forecast = obj.forecast;
-  this.search_query = query;
-  this.time = obj.time;
+
+
+function Weather(obj){
+
+  this.forecast = obj.weather.description;
+  this.time = obj.datetime;
 
 }
 
