@@ -4,6 +4,8 @@
 const express = require('express');
 const cors = require('cors');
 const superagent = require('superagent');
+const pg = require('pg');
+
 
 //environmental variables
 require('dotenv').config();
@@ -14,10 +16,30 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(cors());
 
+//create our postgres client
+const client = new pg.Client(process.env.DATABASE_URL);
+
 // Routes
 // app.get('/location', locationHandler => {
 //   response.send('Whats Up Man!');
 // });
+
+//Routes
+app.use('*', notFoundHandler);
+
+//Function handler
+function notFoundHandler(req, res){
+  res.status(404).send('Not Found');
+}
+client.connect()
+.then(() => {
+  app.listen(PORT, ()=>{
+    console.log('now listening on port ${PORT}');
+  })
+})
+.catch(err => {
+  console.log('ERROR', err);
+})
 
 
 //Route handler
@@ -64,8 +86,6 @@ app.get('/weather', (req, res) => {
       res.status(500).send('Your API call did not work!');
     });
 });
-
-
 
 function Weather(obj) {
 
