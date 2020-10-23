@@ -28,5 +28,5 @@ CREATE TABLE trails (
   trail_url VARCHAR(255),
   conditions VARCHAR(255),
   condition_date VARCHAR(255),
-  condition_time VARCHAR(255),
+  condition_time VARCHAR(255)
 );

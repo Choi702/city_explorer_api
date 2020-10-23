@@ -21,26 +21,52 @@ app.use(cors());
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 
+
+
 // Routes
 // app.get('/location', locationHandler => {
-//   response.send('Whats Up Man!');
-// });
+  //   response.send('Whats Up Man!');
+  // });
 
-//Route handler
-app.get('/location', (req, res) => {
-  let city = req.query.city;
-  let key = process.env.LOCATIONIQ_API_KEY;
-  // console.log('key');
-  const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
-  superagent.get(URL)
-  .then(data => {
-    let location = new Location(data.body[0], city);
-    res.status(200).send(location);
-  })
-  .catch(error => {
-    console.log('error', error);
-    res.status(500).send('Your API call did not work!');
-  });
+  //Route handler
+  app.get('/location', (req, res) => {
+    let city = req.query.city;
+    let key = process.env.LOCATIONIQ_API_KEY;
+    // This is where i check the DB to see if I have stored the information
+
+    const sqlData = `SELECT * FROM location WHERE search_query= $1;`;
+        client.query(sqlData, [city])
+    // If the info is stored, i send back the stored info
+    .then(data =>{
+      if(data.rowCount){
+        res.status(200).json(data.rows[0]);
+      } else{
+        const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
+        superagent.get(URL)
+        .then(data => {
+          let location = new Location(data.body[0], city);
+          // store new info in the DB
+          const SQL = `INSERT INTO location (latitude, longitude, search_query, formatted_query) VALUES ($1, $2, $3, $4)`;
+          client.query(SQL, [location.latitude, location.longitude, location.search_query, location.formatted_query])
+          .then(data => {
+            res.status(200).send(location);
+          
+          })
+    
+      })
+      .catch(error => {
+        console.log('error', error);
+        res.status(500).send('Your API call did not work!');
+      });
+
+      }
+      
+    })
+
+
+    //If it is not stored, I request the info from locationIQ
+    
+    // console.log('key');
   
 });
 // constructor to tailor incoming raw data
@@ -113,7 +139,7 @@ function Trails(obj){
   this.condition_time = obj.conditionStatus;
 }
 
-//Routes
+// Routes
 app.use('*', notFoundHandler);
 
 //Function handler
