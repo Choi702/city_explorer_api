@@ -30,3 +30,4 @@ CREATE TABLE trails (
   condition_date VARCHAR(255),
   condition_time VARCHAR(255)
 );
+

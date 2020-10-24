@@ -127,7 +127,7 @@ Finish time: 2:00 pm
 
 Actual time needed to complete: 2 hours
 
-Number and name of feature: feature 1 on lab 8. Kept on having to redo and always second guessin myself, wasted alot of time.
+Number and name of feature: feature 1 Database on lab 8. Kept on having to redo and always second guessin myself, wasted alot of time.
 
 
 
@@ -140,17 +140,17 @@ Finish time: 4:05pm
 
 Actual time needed to complete: 2 hrs and 45 minutes
 
-Number and name of feature: 2
+Number and name of feature: 2 Server
 //got help from Brandon Gonzales to get the code working. Was about 70% there but need him to assist me in getting to the finish line
 // also googled stackoverflow and got some answers but not all.
 
 
 Estimate of time needed to complete: 2 hours
 
-Start time:  
+Start time:  7:30pm
 
-Finish time: 
+Finish time: 8:29pm
 
-Actual time needed to complete:  
+Actual time needed to complete:  59 minutes 
 
-Number and name of feature:
+Number and name of feature: feature 3 Deploy
