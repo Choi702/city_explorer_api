@@ -6,11 +6,8 @@ const cors = require('cors');
 const superagent = require('superagent');
 const pg = require('pg');
 
-
 //environmental variables
 require('dotenv').config();
-
-
 
 //Declare our port for our server to listen on
 const PORT = process.env.PORT || 3000;
@@ -21,8 +18,6 @@ app.use(cors());
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 
-
-
 // Routes
 // app.get('/location', locationHandler => {
   //   response.send('Whats Up Man!');
@@ -32,13 +27,14 @@ client.connect();
   app.get('/location', (req, res) => {
     let city = req.query.city;
     let key = process.env.LOCATIONIQ_API_KEY;
-    // This is where i check the DB to see if I have stored the information
-
+    //check the DB to see if I have stored the information
     const sqlData = `SELECT * FROM location WHERE search_query= $1;`;
         client.query(sqlData, [city])
     .then(data =>{
       if(data.rowCount){
+        //cached data
         res.status(200).json(data.rows[0]);
+        //location data
       } else{
         const URL = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json`;
         superagent.get(URL)
@@ -59,11 +55,7 @@ client.connect();
 
       }
       
-    })
-
-
-    
- 
+    }) 
   
 });
 // constructor to tailor incoming raw data
@@ -104,7 +96,7 @@ function Weather(obj) {
 app.get('/trails', (req, res) =>{
   let city = req.query.latitude; 
   let city2 = req.query.longitude;
-  console.log('req.query', req.query);
+  // console.log('req.query', req.query);
   let tok1 = process.env.TRAIL_API_KEY;
   const URL= `https://www.hikingproject.com/data/get-trails?lat=${city}&lon=${city2}&maxDistance=10&key=${tok1}`;
   superagent.get(URL)
@@ -135,6 +127,38 @@ function Trails(obj){
   this.condition_date = obj.conditionDate;
   this.condition_time = obj.conditionStatus;
 }
+
+app.get('/movies', (req, res) =>{
+  let city = req.query.search_query;
+  // console.log('city here', city);
+  let tok4 = process.env.MOVIE_API_KEY;
+  const URL = `https://api.themoviedb.org/3/search/movie/?api_key=${tok4}&query=${city}`; 
+  superagent.get(URL) 
+  .then(results => {
+    console.log('results.body', results.body);
+    let searchMovie = results.body.results.map(movies =>{
+      let newerMovies = new Movies(movies)
+      return newerMovies;
+    })
+    res.status(200).send(searchMovie);
+  })
+  .catch(error => {
+    console.log('error', error);
+    res.status(500).send('Your API call did not work!');
+  });
+
+})
+
+function Movies(obj){
+  this.title = obj.title;
+  this.overview = obj.overview;
+  this.average_votes = obj.vote_average;
+  this.total_votes = obj.vote_count;
+  this.image_url = obj.backdrop_path;
+  this.popularity = obj.popluarity;
+  this.released_on = obj.release_date;
+}
+
 
 // Routes
 app.use('*', notFoundHandler);
