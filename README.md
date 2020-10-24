@@ -153,4 +153,7 @@ Finish time: 8:29pm
 
 Actual time needed to complete:  59 minutes 
 
-Number and name of feature: feature 3 Deploy
+Number and name of feature: feature 3 Deploy. I got it working but wasn't sure how to test out so Nicco(TA)showed me how to test and verified functionality
+
+
+

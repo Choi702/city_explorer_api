@@ -36,7 +36,6 @@ client.connect();
 
     const sqlData = `SELECT * FROM location WHERE search_query= $1;`;
         client.query(sqlData, [city])
-    // If the info is stored, i send back the stored info
     .then(data =>{
       if(data.rowCount){
         res.status(200).json(data.rows[0]);
@@ -45,10 +44,9 @@ client.connect();
         superagent.get(URL)
         .then(data => {
           let location = new Location(data.body[0], city);
-          // store new info in the DB
           const SQL = `INSERT INTO location (latitude, longitude, search_query, formatted_query) VALUES ($1, $2, $3, $4)`;
           client.query(SQL, [location.latitude, location.longitude, location.search_query, location.formatted_query])
-          .then(data => {
+          .then(data => { 
             res.status(200).send(location);
           
           })
@@ -64,9 +62,8 @@ client.connect();
     })
 
 
-    //If it is not stored, I request the info from locationIQ
     
-    // console.log('key');
+ 
   
 });
 // constructor to tailor incoming raw data
