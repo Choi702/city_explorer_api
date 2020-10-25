@@ -68,7 +68,7 @@ Actual time needed to complete:  40 minutes
 
 Number and name of feature: feature 4
 
-----------------------------------------------------
+-------------------------------------------------------
 Lab 7
 
 Estimate of time needed to complete:
@@ -116,6 +116,7 @@ Actual time needed to complete:
 Number and name of feature: 
 
 //did not fill out. Got helps from Skylar, Chance, and fellow class mate Brandon Gonzales to finish lab 7
+
 --------------------------------------------------------
 Lab 8
 started 10/22/2020
@@ -128,7 +129,6 @@ Finish time: 2:00 pm
 Actual time needed to complete: 2 hours
 
 Number and name of feature: feature 1 Database on lab 8. Kept on having to redo and always second guessin myself, wasted alot of time.
-
 
 
 started 10/23/2020
@@ -155,5 +155,29 @@ Actual time needed to complete:  59 minutes
 
 Number and name of feature: feature 3 Deploy. I got it working but wasn't sure how to test out so Nicco(TA)showed me how to test and verified functionality
 
+----------------------------------------------------------
+
+lab 9
+Estimate of time needed to complete: 1 hours
+
+Start time:  1:25pm
+
+Finish time: 4:02pm
+
+Actual time needed to complete:  2 hour 37 minutes
+
+Number and name of feature: feature 1 complete
+//got help from Ron but was almost there in getting feature 1 to work
+
+
+Estimate of time needed to complete: 1 hours
+
+Start time:  4:06pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Number and name of feature: feature 2 
 
 
