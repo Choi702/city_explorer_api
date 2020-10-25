@@ -135,7 +135,7 @@ app.get('/movies', (req, res) =>{
   const URL = `https://api.themoviedb.org/3/search/movie/?api_key=${tok4}&query=${city}`; 
   superagent.get(URL) 
   .then(results => {
-    console.log('results.body', results.body);
+    // console.log('results.body', results.body);
     let searchMovie = results.body.results.map(movies =>{
       let newerMovies = new Movies(movies)
       return newerMovies;
@@ -154,12 +154,40 @@ function Movies(obj){
   this.overview = obj.overview;
   this.average_votes = obj.vote_average;
   this.total_votes = obj.vote_count;
-  this.image_url = obj.backdrop_path;
+  this.image_url = `https://image.tmdb.org/t/p/w500${obj.poster_path}`;
   this.popularity = obj.popluarity;
   this.released_on = obj.release_date;
 }
 
 
+app.get('/yelp', (req, res) =>{
+let city = req.query.search_query;
+let tok5 = process.env.YELP_API_KEY;
+const URL = `https://api.yelp.com/v3/businesses/search?location=${city}&term=restaurants&limit=5&offset=${offset}`;
+superagent.get(URL)
+.set('Authorization',`Bearer${tok5}`)
+.then(results =>{
+  console.log('URL', URL);
+let yelpSearch = results.body.results.map(yelp =>{
+  let newerYelp = new Yelp(yelp)
+  return newerYelp;
+})
+res.status(200).send(yelpSearch);
+})
+.catch(error => {
+  console.log('error', error);
+  res.status(500).send('Your API call did not work!');
+});
+
+})
+
+//  function Yelp(obj){
+//    this.name
+//    this.image_url
+//    this.price
+//    this.rating
+//    this.url
+//  }
 // Routes
 app.use('*', notFoundHandler);
 

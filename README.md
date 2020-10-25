@@ -168,3 +168,16 @@ Actual time needed to complete:  2 hour 37 minutes
 
 Number and name of feature: feature 1 complete
 //got help from Ron but was almost there in getting feature 1 to work
+
+
+Estimate of time needed to complete: 1 hours
+
+Start time:  4:06pm
+
+Finish time: 
+
+Actual time needed to complete: 
+
+Number and name of feature: feature 2 
+
+
