@@ -169,15 +169,21 @@ Actual time needed to complete:  2 hour 37 minutes
 Number and name of feature: feature 1 complete
 //got help from Ron but was almost there in getting feature 1 to work
 
-
-Estimate of time needed to complete: 1 hours
-
+10/24/2020 and 10/25/2020
+Estimate of time needed to complete: 3 hours
+10/24
 Start time:  4:06pm
+10/25
+Start time: 1:15pm
+10/24
+Finish time: 6:00pm
+10/25
+Finish time: 3:49pm
 
-Finish time: 
+Actual time needed to complete: 4 hours and 40 minutes
 
-Actual time needed to complete: 
-
-Number and name of feature: feature 2 
+Number and name of feature: feature 2  and feature 3
+Took me 2 days to get lab done. Wasted tons of time researching doc from
+Got some help from Brandon G and Sean H helped me with the rest.
 
 
